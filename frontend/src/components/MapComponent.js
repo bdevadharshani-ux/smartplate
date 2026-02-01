@@ -29,9 +29,9 @@ const createCustomIcon = (color) => {
   });
 };
 
-const ngoIcon = createCustomIcon('#1A4D2E'); // Forest green for NGOs
-const donorIcon = createCustomIcon('#E07A5F'); // Harvest orange for donors
-const defaultIcon = createCustomIcon('#4A4A4A'); // Stone grey for default
+const ngoIcon = createCustomIcon('#1A4D2E');
+const donorIcon = createCustomIcon('#E07A5F');
+const defaultIcon = createCustomIcon('#4A4A4A');
 
 export const MapComponent = ({ 
   center = { lat: 28.6139, lng: 77.2090 }, 
@@ -52,12 +52,10 @@ export const MapComponent = ({
         zoom
       );
 
-      // Add OpenStreetMap tiles
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '&copy; OpenStreetMap contributors'
       }).addTo(mapInstanceRef.current);
 
-      // Add click handler if provided
       if (onClick) {
         mapInstanceRef.current.on('click', (e) => {
           onClick({ lat: e.latlng.lat, lng: e.latlng.lng });
@@ -65,31 +63,26 @@ export const MapComponent = ({
       }
     }
 
-    // Cleanup function
     return () => {
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
         mapInstanceRef.current = null;
       }
     };
-  }, []); // Empty dependency - only run once
+  }, [center.lat, center.lng, zoom, onClick]); // ✅ FIXED
 
-  // Update center when it changes
   useEffect(() => {
     if (mapInstanceRef.current && center) {
       mapInstanceRef.current.setView([center.lat, center.lng], zoom);
     }
   }, [center, zoom]);
 
-  // Update markers
   useEffect(() => {
     if (!mapInstanceRef.current) return;
 
-    // Clear existing markers
     markersRef.current.forEach(marker => marker.remove());
     markersRef.current = [];
 
-    // Add new markers
     markers.forEach(markerData => {
       if (markerData.position) {
         let icon;
