@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: 'JetBrains Mono', source-code-pro, Menlo, Monaco, Consolas, monospace;
+}
+
+h1, h2, h3 {
+    font-family: 'Merriweather', serif;
+}
+
+@layer base {
+    :root {
+        /* SmartPlate Color Palette */
+        --background: 48 33% 94%; /* Warm Sand #F5F3E8 */
+        --foreground: 0 0% 29%; /* Stone Grey #4A4A4A */
+        
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 29%;
+        
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 29%;
+        
+        --primary: 147 49% 21%; /* Forest Canopy #1A4D2E */
+        --primary-foreground: 48 33% 94%;
+        
+        --secondary: 48 22% 90%; /* Sidebar #EAE8DC */
+        --secondary-foreground: 147 49% 21%;
+        
+        --muted: 48 22% 90%;
+        --muted-foreground: 0 0% 45%;
+        
+        --accent: 11 68% 63%; /* Harvest Orange #E07A5F */
+        --accent-foreground: 0 0% 100%;
+        
+        --destructive: 0 54% 51%; /* Earth Red #BC4749 */
+        --destructive-foreground: 0 0% 98%;
+        
+        --success: 93 44% 32%; /* Fresh Leaf #4F772D */
+        --success-foreground: 0 0% 100%;
+        
+        --warning: 39 76% 76%; /* Sunlight #F2CC8F */
+        --warning-foreground: 0 0% 29%;
+        
+        --border: 30 9% 80%;
+        --input: 30 9% 80%;
+        --ring: 147 49% 21%;
+        
+        --chart-1: 147 49% 21%;
+        --chart-2: 11 68% 63%;
+        --chart-3: 93 44% 32%;
+        --chart-4: 39 76% 76%;
+        --chart-5: 0 54% 51%;
+        
+        --radius: 0.75rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* Custom SmartPlate Styles */
+.font-heading {
+    font-family: 'Merriweather', serif;
+}
+
+.font-body {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.font-mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Glass effect */
+.glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/40;
+}
+
+/* Card hover effect */
+.card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+/* Smooth transitions */
+.smooth-transition {
+    @apply transition-all duration-300 ease-out;
+}
+
+/* Button styles */
+.btn-primary {
+    @apply bg-primary text-primary-foreground rounded-full px-6 py-3 font-medium tracking-wide shadow-sm hover:shadow-md transition-all duration-300 ease-out;
+}
+
+.btn-accent {
+    @apply bg-accent text-accent-foreground rounded-full px-6 py-3 font-medium tracking-wide shadow-sm hover:shadow-md transition-all duration-300 ease-out;
+}
+
+/* Input styles */
+.input-smartplate {
+    @apply rounded-xl border-border bg-white/50 focus:ring-2 focus:ring-primary/20 h-12;
+}
+
+/* Badge styles */
+.badge-smartplate {
+    @apply rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider;
+}
+
+/* Leaflet map styles */
+.leaflet-container {
+    @apply rounded-xl;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-secondary rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 rounded-full hover:bg-primary/50;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slideIn {
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 2s ease-in-out infinite;
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+}
