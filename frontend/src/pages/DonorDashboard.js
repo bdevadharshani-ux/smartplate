@@ -7,7 +7,7 @@ import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { DashboardLayout } from '../components/DashboardLayout';
-import { FulfillRequestModal } from '../components/FulfillRequestModal';
+import FulfillRequestModal from '../components/FulfillRequestModal';
 import { 
   Heart, 
   Search, 
@@ -325,4 +325,6 @@ export const DonorDashboard = () => {
     </DashboardLayout>
   );
 };
+export default FulfillRequestModal;
+
 
