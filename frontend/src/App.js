@@ -1,19 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { Toaster } from './components/ui/sonner';
 
 // Pages
-import { LandingPage } from './pages/LandingPage';
+import { Home } from './pages/Home';
 import { Auth } from './pages/Auth';
+import { AdminLogin } from './pages/AdminLogin';
 import { SelectRole } from './pages/SelectRole';
 import { NGODashboard } from './pages/NGODashboard';
 import { DonorDashboard } from './pages/DonorDashboard';
 import { VolunteerDashboard } from './pages/VolunteerDashboard';
 import { AdminDashboard } from './pages/AdminDashboard';
 
-import './App.css';
+import '@/App.css';
 
 function App() {
   return (
@@ -22,11 +24,12 @@ function App() {
         <Toaster richColors position="top-center" />
 
         <Routes>
-          {/* Public */}
-          <Route path="/" element={<LandingPage />} />
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
 
-          {/* Role selection (after Google login) */}
+          {/* Onboarding Routes */}
           <Route
             path="/select-role"
             element={
@@ -36,7 +39,7 @@ function App() {
             }
           />
 
-          {/* Dashboards */}
+          {/* Role-based Dashboards */}
           <Route
             path="/ngo-dashboard"
             element={
