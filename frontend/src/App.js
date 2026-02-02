@@ -5,17 +5,15 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { Toaster } from './components/ui/sonner';
 
 // Pages
-import { Home } from './pages/Home';
+import { LandingPage } from './pages/LandingPage';
 import { Auth } from './pages/Auth';
-import { AdminLogin } from './pages/AdminLogin';
 import { SelectRole } from './pages/SelectRole';
 import { NGODashboard } from './pages/NGODashboard';
 import { DonorDashboard } from './pages/DonorDashboard';
 import { VolunteerDashboard } from './pages/VolunteerDashboard';
 import { AdminDashboard } from './pages/AdminDashboard';
-import { LandingPage } from './pages/LandingPage';
 
-import '@/App.css';
+import './App.css';
 
 function App() {
   return (
@@ -24,12 +22,11 @@ function App() {
         <Toaster richColors position="top-center" />
 
         <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Home />} />
+          {/* Public */}
+          <Route path="/" element={<LandingPage />} />
           <Route path="/auth" element={<Auth />} />
-          <Route path="/admin-login" element={<AdminLogin />} />
 
-          {/* Onboarding Routes */}
+          {/* Role selection (after Google login) */}
           <Route
             path="/select-role"
             element={
@@ -39,7 +36,7 @@ function App() {
             }
           />
 
-          {/* Role-based Dashboards */}
+          {/* Dashboards */}
           <Route
             path="/ngo-dashboard"
             element={
